@@ -45,20 +45,21 @@ contract SushiBar is ERC20("SushiBar", "xSUSHI") {
         );
         _burn(msg.sender, _share);
 
-        if (passedTime >= 2 days && passedTime < 4 days) {
+        if (passedTime > 2 days && passedTime <= 4 days) {
             sushi.transfer(msg.sender, (what.mul(1).div(4)));
             sushi.transfer(address(this), (what.mul(3).div(4)));
         }
 
-        if (passedTime >= 4 days && passedTime < 6 days) {
+        if (passedTime > 4 days && passedTime <= 6 days) {
             sushi.transfer(msg.sender, (what.mul(1).div(2)));
             sushi.transfer(address(this), (what.mul(1).div(2)));
         }
 
-        if (passedTime >= 6 days && passedTime < 8 days) {
+        if (passedTime > 6 days && passedTime <= 8 days) {
             sushi.transfer(msg.sender, (what.mul(3).div(4)));
             sushi.transfer(address(this), (what.mul(1).div(4)));
-        } else {
+        }
+        if (passedTime > 8 days) {
             sushi.transfer(msg.sender, what);
         }
     }
